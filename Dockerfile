@@ -4,6 +4,7 @@ MAINTAINER WoT.io Devs <dev@wot.io>
 RUN mkdir -p /data/db
 RUN mkdir -p /data/server_logs
 
+VOLUME ["/data"]
 
 # Install RabbitMQ
 
@@ -30,15 +31,15 @@ RUN apt-get update && apt-get install -y mongodb-org
 EXPOSE 27017
 
 
+# Start with a known base
+WORKDIR /root
+
+
 # Install supervisor
 
 RUN npm install -g supervisor
 
 # Install BipIO
-
-# Start with a known base
-WORKDIR /root
-
 RUN npm install -g bipio
 
 # Add config
