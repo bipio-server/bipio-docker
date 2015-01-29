@@ -39,8 +39,13 @@ WORKDIR /root
 
 RUN npm install -g supervisor
 
+# Install Git
+RUN apt-get install git
+
+
 # Install BipIO
-RUN npm install -g bipio
+WORKDIR /usr/local/lib/node_modules
+RUN git clone https://github.com/bipio-server/bipio.git
 
 # Add config
 RUN mv /etc/localtime /etc/localtime.bak
@@ -50,6 +55,6 @@ EXPOSE 5000
 
 ADD ./bootstrap.sh /root/bootstrap.sh
 
-RUN chmod 755 ./*.sh
+RUN chmod 755 /root/*.sh
 
 ENTRYPOINT ["/root/bootstrap.sh"]

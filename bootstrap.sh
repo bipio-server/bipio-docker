@@ -1,36 +1,13 @@
 #!/bin/bash
 set -x
-/usr/bin/mongod &
-exec /usr/sbin/rabbitmq-server >> /data/server_logs/server.log 2>&1 &
-cd /usr/local/lib/node_modules/bipio
-
-#export BIPIO_HOSTNAME=localhost
-#export BIPIO_API_HOST=
-#export BIPIO_PROTOCOL=http 
-#export BIPIO_ADMIN_PASSWORD= 
-#export BIPIO_AES_KEY= 
-#export AUTH_HOST=
-
-envVars="BIPIO_HOSTNAME BIPIO_API_HOST BIPIO_PROTOCOL BIPIO_ADMIN_PASSWORD BIPIO_AES_KEY AUTH_HOST"
-
-for i in $envVars; do
-  # regex escaping
-  val=$(echo ${!i} | sed -e 's/\//\\\//g' | sed -e 's/\@/\\@/g')
-
-  echo $val
-  perl -pi -e "s/$i/$val/g" /usr/local/lib/node_modules/bipio/config/config.json-dist
-done
+/usr/bin/mongod >> /data/server_logs/mongo.log 2>&1 &
+/usr/sbin/rabbitmq-server >> /data/server_logs/rabbit.log 2>&1 &
 
 perl -pi -e "s/127\.0\.0\.1/0.0.0.0/g" /usr/local/lib/node_modules/bipio/config/config.json-dist
 
-mkdir -p /data/server_logs
-
-npm config set registry https://registry.npmjs.org
-
+cd /usr/local/lib/node_modules/bipio
 make install
-#make install > /data/server_logs/server.log 2>&1
 
 supervisor ./src/server.js >> /data/server_logs/server.log 2>&1 &
 
 /bin/bash -l
-
