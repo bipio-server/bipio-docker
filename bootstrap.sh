@@ -21,6 +21,8 @@ for i in $envVars; do
   perl -pi -e "s/$i/$val/g" /usr/local/lib/node_modules/bipio/config/config.json-dist
 done
 
+perl -pi -e "s/127\.0\.0\.1/0.0.0.0/g" /usr/local/lib/node_modules/bipio/config/config.json-dist
+
 mkdir -p /data/server_logs
 
 npm config set registry https://registry.npmjs.org
