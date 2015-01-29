@@ -36,7 +36,6 @@ WORKDIR /root
 
 
 # Install supervisor
-
 RUN npm install -g supervisor
 
 # Install Git
