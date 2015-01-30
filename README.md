@@ -1,8 +1,7 @@
 Docker Files for BipIO Server
 
 ## Pre-Installation ##
-Before you can install & run BipIO, MongoDB and RabbitMQ need to be running.  Docker makes it easy to bundle these as well.
-You'll also need to set up a `data` directory to persist your data and logs.
+Before you can install & run BipIO, you'll also need to set up a `data` directory to persist your data and logs.
 
 ```
 mkdir ~/data
@@ -17,21 +16,26 @@ mkdir ~/data/etc
 
     docker pull wotio/bipio
 
-### First Time Config (sets up configurations and data volumes)
+### First, Set up Bipio  (this sets up configurations and data volumes)
 
     docker run -it -v ~/data:/data -p 5000:5000 wotio/bipio
 
-### To Start Container
+
+[note: that during the build process you will be asked a series of prompts the first time the BipIO docker container is run to configure some of the basic settings.]
+
+### Then, To Start Container and run Bip.IO
 
     docker run -d -v ~/data:/data -p 5000:5000 wotio/bipio
 
-note that during the build process you will be asked a series of prompts the first time the BipIO docker container is run to configure some of the basic settings.
 
 ## Option 2 - DIY ##
 
 If you're slightly more adventurous, you can build BipIO yourself:
 
-Repo is available [here][1]
+Repo for the docker container is available [here][1]
+
+Repo for the Bip.IO Server is available [here][2]
 
 
   [1]: https://github.com/bipio-server/bipio-docker
+  [2]: https://github.com/bipio-server/bipio
