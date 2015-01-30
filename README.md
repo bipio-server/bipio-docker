@@ -8,6 +8,8 @@ You'll also need to set up a `data` directory to persist your data and logs.
 mkdir ~/data
 mkdir ~/data/db
 mkdir ~/data/server_logs
+mkdir ~/data/var
+mkdir ~/data/etc
 ```
 
 
