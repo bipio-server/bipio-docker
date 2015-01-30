@@ -16,8 +16,14 @@ mkdir ~/data/etc
 ## Option 1 - Grab 'n Go ##
 
     docker pull wotio/bipio
-    docker run -i -v ~/data:/data -p 5000:5000 wotio/bipio
 
+### First Time Config (sets up configurations and data volumes)
+
+    docker run -it -v ~/data:/data -p 5000:5000 wotio/bipio
+
+### To Start Container
+
+    docker run -d -v ~/data:/data -p 5000:5000 wotio/bipio
 
 note that during the build process you will be asked a series of prompts the first time the BipIO docker container is run to configure some of the basic settings.
 

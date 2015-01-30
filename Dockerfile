@@ -44,7 +44,11 @@ RUN apt-get install git
 
 # Install BipIO
 WORKDIR /usr/local/lib/node_modules
+
 RUN git clone https://github.com/bipio-server/bipio.git
+
+WORKDIR /usr/local/lib/node_modules/bipio
+RUN npm install
 
 # Add config
 RUN mv /etc/localtime /etc/localtime.bak
@@ -56,4 +60,6 @@ ADD ./bootstrap.sh /root/bootstrap.sh
 
 RUN chmod 755 /root/*.sh
 
-ENTRYPOINT ["/root/bootstrap.sh"]
+CMD /root/bootstrap.sh
+
+
