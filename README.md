@@ -2,6 +2,7 @@ Docker Files for BipIO Server
 
 ## Pre-Installation ##
 Before you can install & run BipIO, you'll also need to set up a `data` directory to persist your data and logs.
+(`mongod` requires a minimum of 3GB free space on this volume).
 
 ```
 mkdir ~/data
