@@ -1,3 +1,4 @@
+# **NOTICE:** This repository has been **DEPRECATED**. Do not use.
 Docker Files for BipIO Server
 
 ## Pre-Installation ##
